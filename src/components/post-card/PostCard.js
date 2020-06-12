@@ -81,8 +81,8 @@ class PostCardComponent extends PureComponent {
 
   render() {
     // 3 : достать ниже url из  props.match по аналогии с UserCard строка 7
-    const { post, hasImage, author = '', className = '', match: {url}, withCommentsLoading } = this.props;
-
+    const { post, hasImage, author = '', className = '', match: {url, params:{id}}, withCommentsLoading } = this.props;
+    // console.log(this.props.match);
     if (!post) {
       console.log('post is not defined');
       return null;
@@ -120,7 +120,7 @@ class PostCardComponent extends PureComponent {
         */}
         {/**/}
 
-        { (url === "/posts") && <Link to={`${url}/${post.id}`}>Show details</Link> }
+        { !id && <Link to={`${url}/${post.id}`}>Show details</Link> }
 
         { showComments && !!comments.length && <label>Comments:</label> }
         { showComments && isCommentsLoading && <div>Loading...</div> }
